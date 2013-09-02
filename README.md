@@ -1,0 +1,1 @@
+每次完整的dump一份redis的rdb文件
