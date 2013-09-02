@@ -1,1 +1,2 @@
-每次完整的dump一份redis的rdb文件
+store for gid->pids & pid->pidinfo
+use redis pipeline
