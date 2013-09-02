@@ -1,0 +1,25 @@
+target = hiredis-example
+srcs = example.c
+
+libs = ./libhiredis.a
+
+subdirs=
+INCLUDE= 
+LIBRARY= 
+CPPFLAGS=-g -ggdb
+all : $(target)
+
+objs=$(patsubst %.c, %.o, $(srcs))
+
+$(target) : $(objs) 
+	for dir in $(subdirs); do make -C $$dir ; done
+	gcc $(CPPFLAGS) $(INCLUDE) -o $(target) $^ $(libs) $(LIBRARY) 
+
+%.o : %.c
+	gcc $(INCLUDE) $(CPPFLAGS) $< -c -o $@
+
+.PHONY : clean sclean
+clean:
+	for dir in $(subdirs); do make -C $$dir clean; done
+	rm -f $(objs)
+	rm -f $(target)
